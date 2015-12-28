@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:s="http://myfaces.apache.org/sandbox"
+                xmlns:m="http://at.irian.molokini/molokini"
+        >
+    <ui:define name="content">
+
+        <h:form>
+            <h:panelGrid columns="3">
+                <f:facet name="header">
+                    STEP 1/3 (Start Conversation)
+                </f:facet>
+                <h:outputLabel for="name" value="Company Name" />
+                <h:inputText id="name" value="#{registrationBean.registration.name}" required="true"/>
+                <h:message for="name" showDetail="true" styleClass="warn"/>
+
+                <h:outputLabel for="street" value="Street" />
+                <h:inputText id="street" value="#{registrationBean.registration.street}" required="true"/>
+                <h:message for="street" showDetail="true" styleClass="warn"/>
+
+                <h:outputLabel for="zip" value="Zip" />
+                <h:inputText id="zip" value="#{registrationBean.registration.zip}" required="true"/>
+                <h:message for="zip" showDetail="true" styleClass="warn"/>
+
+                <h:outputLabel for="city" value="City" />
+                <h:inputText id="city" value="#{registrationBean.registration.city}" required="true"/>
+                <h:message for="city" showDetail="true" styleClass="warn"/>
+
+                <h:commandButton value="Continue" action="person" />
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

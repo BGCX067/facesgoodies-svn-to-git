@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <title>FOO</title>
+</head>
+<body>
+<ui:composition  template="/WEB-INF/templates/master.xhtml" >
+    <ui:param name="title" value="View Params"/>
+    <f:metadata>
+      <f:viewParam id="id" name="playerId" />
+    </f:metadata>
+    <ui:define name="content">
+
+    <p><b>Some football(->soccer) players:</b></p>
+
+        <ul>
+            <ui:repeat var="player" value="#{playersBean.players}">
+                <li>
+                    <h:link outcome="vp2">
+                      <f:param name="playerId" value="#{player.id}"/>
+                      #{player.secondname}
+                    </h:link>
+                </li>
+            </ui:repeat>
+        </ul>
+
+
+    </ui:define>
+</ui:composition>
+    
+    <p>
+    </p>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:composite="http://java.sun.com/jsf/composite">
+  <head/>
+  <body>
+    <composite:interface>
+      <composite:attribute name="maxRange" required="true" />
+      <composite:attribute name="minRange" required="true" />
+    </composite:interface>
+
+  <composite:implementation>
+
+    <h:outputStylesheet name="jquery-ui-1.7.1.custom.css" />
+    <h:outputScript name="jquery-1.3.2.min.js" />
+    <h:outputScript name="jquery-ui-1.7.1.custom.min.js" />
+
+    <style type="text/css">
+        #demo-frame > div.demo { padding: 10px !important; };
+  </style>
+  <script type="text/javascript">
+  $(function() {
+    $("#slider-range").slider({
+      range: true,
+      min: 0,
+      max: 500,
+      values: [#{cc.attrs.minRange}, #{cc.attrs.maxRange}],
+      slide: function(event, ui) {
+        $("#amount").val('$' + ui.values[0] + ' - $' + ui.values[1]);
+      }
+    });
+    $("#amount").val('$' + $("#slider-range").slider("values", 0) + ' - $' + $("#slider-range").slider("values", 1));
+  });
+  </script>
+
+<div class="demo">
+
+<p>
+<label for="amount">Price range:</label>
+<input type="text" id="amount" style="border:0; color:#f6931f; font-weight:bold;" />
+</p>
+
+<div id="slider-range"></div>
+
+</div>
+      <!--h:inputText ... value="#{cc.attrs.intValue}"/-->
+    </composite:implementation>
+  </body>
+</html>

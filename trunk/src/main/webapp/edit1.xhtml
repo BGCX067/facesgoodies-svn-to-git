@@ -1,0 +1,23 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:mw="http://wessendorf.net/kickstart"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+	template="WEB-INF/facelets/layout/template.xhtml">
+
+<!-- menu -->
+<ui:define name="menu">
+Edit
+</ui:define>
+
+<!-- content -->
+  <ui:define name="content">
+	   <tr:panelFormLayout>
+	     <tr:messages/>
+	     <tr:inputText label="Firstname: " id="username" value="#{editor.user.firstname}" required="true"/>
+	     <tr:inputText label="Secondname: " id="passwd" value="#{editor.user.secondname}" required="true"/>
+	     <tr:inputDate label="Birthday: " id="date"  value="#{editor.user.birthday}" />
+	   </tr:panelFormLayout><br/>
+     <tr:commandButton id="next" text="Next" action="#{editor.next}"/>
+  </ui:define>
+</ui:composition>

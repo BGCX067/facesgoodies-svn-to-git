@@ -1,0 +1,99 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+  xmlns:mw="http://wessendorf.net/kickstart"
+  template="WEB-INF/facelets/layout/template.xhtml">
+
+<!-- content -->
+  <ui:define name="content">
+  <link rel="stylesheet" type="text/css" href="dtk/dijit/themes/tundra/tundra.css" />
+  <script type="text/javascript" src="dtk/dojo/dojo.js"
+     djConfig="parseOnLoad: true">
+  </script>
+  <script type="text/javascript">
+    dojo.require("dijit.Dialog");
+  </script>
+  
+  <script>
+  function loader(state)
+  {
+    var busy = state == TrRequestQueue.STATE_BUSY;
+    var div = document.getElementById("load");
+    div.style.display = busy ? "inline" : "none";
+    if(!busy)
+    {
+      TrPage.getInstance().getRequestQueue().removeStateChangeListener(loader);
+    }
+  }
+  function addListener()
+  {
+    var requestQueue = TrPage.getInstance().getRequestQueue();
+    requestQueue.addStateChangeListener(loader);
+  }
+
+  function hello(name)
+  {
+    var dialog2 = new dijit.Dialog({id:"dialog1", title: "New User created!"});
+    var dialogContent = "Successfully created the user: \"" + name + "\"";
+    dialog2.setContent(dialogContent);
+    dialog2.show();
+  }
+
+  </script>
+
+
+  
+  <div id="load" style="display: none; background-color: red; font-size: large; width: 130px; position: absolute"> LOADING...!!! </div>
+  
+  
+    <tr:statusIndicator />
+    <tr:table value="#{all.users}" id="userTable" var="user" rows="5">
+      <f:facet name="footer">
+        <tr:outputText value="All users" />
+      </f:facet>
+      
+      <mw:column header="#{bundle['all.firstname']}" value="#{user.firstname}" sort="firstname"/>
+      <mw:column header="#{bundle['all.secondname']}" value="#{user.secondname}" sort="secondname"/>
+      <mw:column header="#{bundle['all.birthday']}" value="#{user.birthday}" sort="birthday"/>
+      <f:facet name="detailStamp" >
+        <tr:panelGroupLayout layout="vertical" >
+          <tr:outputText value="Street: #{user.address.street}"/>
+          <tr:outputText value="ZIP Code: #{user.address.zip}"/>
+          <tr:outputText value="City: #{user.address.city}"/>
+          <tr:outputText value="Country / US State: #{user.address.state}"/>
+        </tr:panelGroupLayout>
+      </f:facet>
+      
+      <tr:column>
+        <f:facet name="header">
+          <tr:outputText value="-Edit-" />
+        </f:facet>
+        <tr:commandLink id="edit" text="Edit" action="dialog:edit" returnListener="#{all.handleReturn}">
+          <f:setPropertyActionListener target="#{editor.userId}" value="#{user.id}" />
+        </tr:commandLink>
+      </tr:column>
+      
+      <tr:column>
+        <f:facet name="header">
+          <tr:outputText value="-Location-" />
+        </f:facet>
+        <tr:commandLink id="map" text="Google Maps" useWindow="true" action="dialog:map" 
+            returnListener="#{all.googleMap}" launchListener="#{all.startMap}">
+          <tr:setActionListener from="#{user.id}" to="#{googleMapBean.userId}"/>
+        </tr:commandLink>
+      </tr:column>
+      
+      <tr:column>
+        <f:facet name="header">
+          <tr:outputText value="-Delete-" />
+        </f:facet>
+        <tr:commandLink id="delete" partialSubmit="true" onclick="addListener();" text="Delete" action="#{all.deleteUser}">
+          <tr:setActionListener from="#{user}" to="#{all.toDelete}"/>
+        </tr:commandLink>
+      </tr:column>
+    </tr:table>
+  </ui:define>
+
+</ui:composition>

@@ -1,0 +1,28 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:mw="http://wessendorf.net/kickstart"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+	template="WEB-INF/facelets/layout/template.xhtml">
+
+
+<!-- menu -->
+<ui:define name="menu">
+Edit
+</ui:define>
+
+
+<!-- content -->
+  <ui:define name="content">
+	   <tr:panelFormLayout>
+	     <tr:messages/>
+	     <tr:inputText label="Street: " value="#{editor.user.address.street}" required="true"/>
+	     <tr:inputText label="Zip-Code: " value="#{editor.user.address.zip}" required="true"/>
+	     <tr:inputText label="City: " value="#{editor.user.address.city}" required="true"/>
+	     <tr:inputText label="State (US): " value="#{editor.user.address.state}" required="true"/>
+	   </tr:panelFormLayout>
+	   <br/>
+     <tr:commandButton text="back" action="#{editor.back}"/>
+     <tr:commandButton text="save" action="#{editor.save}"/>
+  </ui:define>
+</ui:composition>

@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:orchestra="http://myfaces.apache.org/orchestra"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd"
+        >
+
+    <bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"/>
+
+    <bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor"/>
+
+    <bean id="myDataSource" class="org.apache.commons.dbcp.BasicDataSource">
+        <property name="driverClassName" value="org.hsqldb.jdbcDriver" />
+        <property name="url" value="jdbc:hsqldb:mem:." />
+        <property name="username" value="sa" />
+        <property name="password" value="" />
+        <property name="initialSize">
+            <value>1</value>
+        </property>
+        <property name="maxActive">
+            <value>100</value>
+        </property>
+        <property name="maxIdle">
+            <value>100</value>
+        </property>
+    </bean>
+
+    <bean id="managedDataSource" class="org.apache.myfaces.orchestra.connectionManager.ConnectionManagerDataSource">
+	    <property name="dataSource" ref="myDataSource"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManager" />
+
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="managedDataSource" />
+        <property name="jpaDialect">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
+        </property>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
+                <property name="databasePlatform" value="org.hibernate.dialect.HSQLDialect"/>
+            </bean>
+        </property>
+        <property name="persistenceUnitName" value="jax07"/>
+    </bean>
+
+    <!-- orchestra -->
+    <!-- 1. initialization of all orchestra modules (required for core15 module) -->
+    <import resource="classpath*:/META-INF/spring-orchestra-init.xml" />
+
+    <!-- 2. the conversation scopes -->
+    <bean class="org.springframework.beans.factory.config.CustomScopeConfigurer">
+      <property name="scopes">
+        <map>
+          <entry key="conversation.manual">
+            <bean class="org.apache.myfaces.orchestra.conversation.spring.SpringConversationScope">
+              <property name="timeout" value="30" />
+              <property name="advices">
+                <list>
+                  <ref bean="persistentContextConversationInterceptor"/>
+                </list>
+              </property>
+            </bean>
+          </entry>
+
+          <entry key="conversation.flash">
+            <bean class="org.apache.myfaces.orchestra.conversation.spring.SpringConversationScope">
+              <property name="timeout" value="30" />
+              <property name="advices">
+                <list>
+                  <ref bean="persistentContextConversationInterceptor"/>
+                </list>
+              </property>
+              <property name="lifetime" value="flash"/>
+            </bean>
+          </entry>
+        </map>
+      </property>
+    </bean>
+
+    <!-- 3. the "entity manager" manager -->
+    <bean id="persistentContextConversationInterceptor"
+          class="org.apache.myfaces.orchestra.conversation.spring.PersistenceContextConversationInterceptor">
+        <property name="persistenceContextFactory" ref="persistentContextFactory" />
+    </bean>
+
+    <!-- 4. conversation - persistence adapter -->
+    <bean id="persistentContextFactory"
+          class="org.apache.myfaces.orchestra.conversation.spring.JpaPersistenceContextFactory">
+        <property name="entityManagerFactory" ref="entityManagerFactory" />
+    </bean>
+
+    <bean id="personDao" class="at.irian.jsf.dao.PersonDaoImpl" />
+    <bean id="registrationDao" class="at.irian.jsf.dao.RegistrationDaoImpl" />
+
+    <bean id="registrationListBean" class="at.irian.jsf.model.RegistrationListBean" scope="request"
+          autowire="byName" >
+    </bean>
+
+
+    <bean id="registrationBean" class="at.irian.jsf.model.RegistrationBean" scope="conversation.manual"
+          orchestra:conversationName="registration"
+          autowire="byName" >
+        <aop:scoped-proxy />
+    </bean>
+</beans>

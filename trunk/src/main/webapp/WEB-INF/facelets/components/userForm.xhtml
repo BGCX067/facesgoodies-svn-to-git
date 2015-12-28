@@ -1,0 +1,19 @@
+<div 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:tr="http://myfaces.apache.org/trinidad">
+
+	   <tr:panelFormLayout>
+	     <tr:inputText label="Firstname: " readOnly="#{!edit}" value="#{bean.user.firstname}" required="true"/>
+	     <tr:inputText label="Secondname: " readOnly="#{!edit}" value="#{bean.user.secondname}" required="true"/>
+	     <tr:inputDate label="Birthday: " readOnly="#{!edit}" value="#{bean.user.birthday}" />
+	     <br/>
+	     <tr:inputText label="Street: " readOnly="#{!edit}" value="#{bean.user.address.street}" required="true"/>
+	     <tr:inputText label="Zip-Code: " readOnly="#{!edit}" value="#{bean.user.address.zip}" required="true"/>
+	     <tr:inputText label="City: " readOnly="#{!edit}" value="#{bean.user.address.city}" required="true"/>
+	     <tr:inputText label="Country / US State: " readOnly="#{!edit}" value="#{bean.user.address.state}" required="true"/>
+	   </tr:panelFormLayout>
+
+</div>

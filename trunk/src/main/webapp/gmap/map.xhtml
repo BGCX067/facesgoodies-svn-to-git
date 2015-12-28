@@ -1,0 +1,17 @@
+<tr:document
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:mw="http://wessendorf.net/kickstart"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+	title="Google Map Location for #{googleMapBean.user.firstname} #{googleMapBean.user.secondname}">
+ 
+ <f:facet name="metaContainer">
+   <link rel="stylesheet" href="./community.css" type="text/css" />
+ </f:facet>
+ 
+    <mw:googleMap 
+      bean="#{googleMapBean.user.address}"
+      key="ABQIAAAAHAP9HK0VYg3qykCqO5QXwxQZgaSlIJgRQnJgjEpLyDfYDVL3EBQnOm5oIcBbMar7BeF2mVacxBtRFA" />
+  
+  
+</tr:document>

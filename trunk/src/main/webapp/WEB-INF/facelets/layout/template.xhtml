@@ -1,0 +1,49 @@
+<tr:document styleClass="tundra"
+   xmlns:ui="http://java.sun.com/jsf/facelets"
+   xmlns:h="http://java.sun.com/jsf/html"
+   xmlns:f="http://java.sun.com/jsf/core"
+   xmlns:tr="http://myfaces.apache.org/trinidad"
+   xmlns:c="http://java.sun.com/jstl/core">
+   <f:loadBundle basename="net.wessendorf.MessageResources" var="bundle"/>
+   <f:facet name="metaContainer">
+		
+		 <link rel="stylesheet" type="text/css" href="../css/default.css" media="screen"/>
+		 <title>#{bundle['website.titel']}</title>		
+   </f:facet>		
+
+
+<div class="container">
+	
+	<div class="main">
+
+		<div class="header">
+      <ui:insert name="header"><ui:include src="header.xhtml" /></ui:insert>
+		</div>
+		
+		<div class="content">
+	
+			<div class="item">
+			<tr:form>
+			  <ui:insert name="content">Content</ui:insert>
+			</tr:form>
+			</div>
+	
+		</div>
+
+		<div class="sidenav">
+      <ui:insert name="menu"><ui:include src="menu.xhtml" /></ui:insert>
+		</div>
+	
+		<div class="clearer"><span></span></div>
+
+	</div>
+
+	<div class="footer">
+	  <ui:insert name="footer">
+      (c) 2007 <a href="index.html">Matthias Wessendorf</a>. Template design by <a href="http://templates.arcsin.se">Arcsin</a>
+	  </ui:insert>
+	</div>
+
+</div>
+
+</tr:document>

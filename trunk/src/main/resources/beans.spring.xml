@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:orchestra="http://myfaces.apache.org/orchestra"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd
+         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd">
+
+  <bean class="com.company.JpaUserDao" id="userDao" />
+
+  <bean class="com.company.UserServiceImpl" id="userServiceImpl"
+    p:userDao-ref="userDao"/>
+
+  <bean id="all" class="net.wessendorf.faces.starter.view.controller.AllController" scope="request"
+    p:userService-ref="userServiceImpl">
+  </bean>
+  
+  <bean id="create" class="net.wessendorf.faces.starter.view.controller.CreateController" scope="request"
+    p:userService-ref="userServiceImpl" />
+  
+  <bean id="editor" class="net.wessendorf.faces.starter.view.controller.Editor" scope="conversation.manual"
+    p:userService-ref="userServiceImpl" />
+  
+  <bean id="googleMapBean" class="net.wessendorf.faces.starter.view.controller.GoogleMapBean" scope="conversation.manual"
+    orchestra:conversationName="googleMap" p:userService-ref="userServiceImpl" />
+
+</beans>

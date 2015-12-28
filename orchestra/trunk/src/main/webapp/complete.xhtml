@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:s="http://myfaces.apache.org/sandbox"
+                xmlns:m="http://at.irian.molokini/molokini"
+        >
+    <ui:define name="content">
+
+        <h:form>
+            <h:panelGrid columns="2">
+                <f:facet name="header">
+                    STEP 3/3 (Invalidate Converstation)
+                </f:facet>
+                <h:outputText value="Company Name" />
+                <h:outputText id="name" value="#{registrationBean.registration.name}" />
+
+                <h:outputText value="Street" />
+                <h:outputText id="street" value="#{registrationBean.registration.street}" />
+
+                <h:outputText value="Zip" />
+                <h:outputText id="zip" value="#{registrationBean.registration.zip}" />
+
+                <h:outputText value="City" />
+                <h:outputText id="city" value="#{registrationBean.registration.city}" />
+
+                <h:outputText value="Persons" />
+                <t:dataTable var="r" value="#{registrationBean.registration.persons}" preserveDataModel="true" >
+                    <h:column>
+                        <f:facet name="header">
+                            Firstname
+                        </f:facet>
+                        <h:outputText value="#{r.firstname}" />
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            Lastname
+                        </f:facet>
+                        <h:outputText value="#{r.lastname}" />
+                    </h:column>
+                </t:dataTable>
+                
+
+                <h:outputLabel for="creditCardType" value="creditCardType" />
+                <t:selectOneMenu id="creditCardType" value="#{registrationBean.registration.creditCardType}" required="true">
+                    <s:selectItems var="g" itemValue="#{g.value}" itemLabel="#{g.value}" value="#{registrationBean.creditCardSelectItems}" />
+                    <f:converter converterId="at.irian.jsf.creditCardType.Converter" />
+                </t:selectOneMenu>
+
+                <h:outputLabel for="creditCardNumber" value="creditCardNumber" />
+                <h:panelGroup>
+                    <h:inputText id="creditCardNumber" value="#{registrationBean.registration.creditCardNumber}" required="true"/>
+                    <h:message for="creditCardNumber" showDetail="true" styleClass="warn"/>
+                </h:panelGroup>
+
+                <h:panelGroup />
+                <h:panelGroup>
+                    <t:commandButton value="Submit Registration" action="#{registrationBean.save}" rendered="#{registrationBean.registrationComplete}"/>&#160;
+                    <t:commandButton value="Cancel" action="#{registrationBean.cancel}" immediate="true" />
+                </h:panelGroup>
+                <h:panelGroup />
+            </h:panelGrid>
+        </h:form>
+
+    </ui:define>
+</ui:composition>

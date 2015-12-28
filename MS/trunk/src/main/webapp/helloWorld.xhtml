@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:wessi="http://wessendorf.net/behavior">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <title>FOO</title>
+</head>
+<body>
+  <ui:composition  template="/WEB-INF/templates/master.xhtml" >
+    <ui:param name="title" value="Dependency Injection mit Apache OpenWebBeans (JSRs 299/330)"/>
+    <ui:define name="content">
+
+    <h:outputText value="#{helloWorldBean.message}" />
+    <h:outputText value="#{fooBarDate}" />
+
+    <p>
+      <h:commandButton value="Normal" action="#{helloWorldBean.greeting}" />
+    </p>
+
+    <p>
+      <h:commandButton value="Special" action="#{helloWorldBean.carnivalGreeting}" />
+    </p>
+
+    </ui:define>
+  </ui:composition>
+</body>
+</html>

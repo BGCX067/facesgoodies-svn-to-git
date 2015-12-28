@@ -1,0 +1,16 @@
+<div xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+  xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:h="http://java.sun.com/jsf/html"
+  xmlns:c="http://java.sun.com/jstl/core">
+    
+  <tr:panelGroupLayout layout="vertical">
+    <tr:outputText value="#{bundle['user.crud']}"/>
+    <tr:panelList>
+      <tr:goLink text="#{bundle['user.create']}" destination="create.xhtml"/>
+      <tr:goLink text="#{bundle['user.all']}" destination="all.xhtml"/>
+      <tr:goLink text="#{bundle['dojo.example']}" destination="dojo.xhtml"/>
+    </tr:panelList>
+  </tr:panelGroupLayout>
+</div>

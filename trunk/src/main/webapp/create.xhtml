@@ -1,0 +1,14 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:mw="http://wessendorf.net/kickstart"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+	template="WEB-INF/facelets/layout/template.xhtml">
+
+<!-- content -->
+  <ui:define name="content">
+    <mw:userForm bean="#{create}" edit="true"/>
+    <tr:commandButton text="Create User!" action="#{create.createUser}" />
+  </ui:define>
+
+</ui:composition>

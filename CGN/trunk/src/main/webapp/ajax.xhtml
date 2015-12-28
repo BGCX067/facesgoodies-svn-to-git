@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+</head>
+<body>
+<ui:composition  template="/WEB-INF/templates/master.xhtml" >
+    <ui:param name="title" value="Ajax..."/>
+    <ui:define name="content">
+       <h:outputScript name="cgn.js" />
+       <h:inputText value="#{sessionScope['cgnHack']}" id="tipper">
+         <f:ajax event="keyup" render="output1" />
+       </h:inputText>
+       
+       <p><h:outputText id="output1" value="#{sessionScope['cgnHack']}" /></p>
+       
+       <p><b>Ein weiteres Bsp</b></p>
+       <h:commandLink value="Click me">
+         <f:ajax onevent="callback" />
+       </h:commandLink>
+       
+       
+       <p>
+         <h:commandButton value="...zum start"
+           action="/start" />
+       </p>    
+       
+    </ui:define>
+</ui:composition>
+    
+    <p>
+    </p>
+</body>
+</html>

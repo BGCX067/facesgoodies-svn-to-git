@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE faces-config PUBLIC  "-//Sun Microsystems, Inc.//DTD JavaServer Faces Config 1.0//EN"
+        "http://java.sun.com/dtd/web-facesconfig_1_0.dtd">
+<faces-config>
+
+    <application>
+        <view-handler>com.sun.facelets.FaceletViewHandler</view-handler>
+        <variable-resolver>org.springframework.web.jsf.DelegatingVariableResolver</variable-resolver>
+        <locale-config>
+            <default-locale>de</default-locale>
+            <supported-locale>en</supported-locale>
+        </locale-config>
+    </application>
+
+    <!--
+    <lifecycle>
+        <phase-listener>org.apache.myfaces.orchestra.viewController.jsf.ViewControllerPhaseListener</phase-listener>
+    </lifecycle>
+    -->
+
+    <navigation-rule>
+        <from-view-id>*</from-view-id>
+        <navigation-case>
+            <from-outcome>registration</from-outcome>
+            <to-view-id>/registration.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>person</from-outcome>
+            <to-view-id>/person.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>complete</from-outcome>
+            <to-view-id>/complete.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>end</from-outcome>
+            <to-view-id>/end.xhtml</to-view-id>
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>index</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+
+    <converter>
+        <converter-id>at.irian.jsf.creditCardType.Converter</converter-id>
+        <converter-class>at.irian.jsf.model.CreditCardConverterConverter</converter-class>
+    </converter>
+    
+</faces-config>

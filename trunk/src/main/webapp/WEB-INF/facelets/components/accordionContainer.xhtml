@@ -1,0 +1,17 @@
+<div 
+  xmlns="http://www.w3.org/1999/xhtml"
+  xmlns:ui="http://java.sun.com/jsf/facelets">
+  
+  <link rel="stylesheet" type="text/css" href="dtk/dijit/themes/tundra/tundra.css" />
+  <script type="text/javascript" src="http://o.aolcdn.com/dojo/1.0.0/dojo/dojo.xd.js" djConfig="parseOnLoad: true"></script>
+  <script type="text/javascript">
+     dojo.require("dojo.parser");
+     dojo.require("dijit.layout.AccordionContainer");
+   </script>
+     
+    <div dojoType="dijit.layout.AccordionContainer" duration="#{duration}" style="#{style}">
+                
+      <ui:insert/>
+
+    </div>
+</div>

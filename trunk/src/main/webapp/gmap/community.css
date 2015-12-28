@@ -1,0 +1,231 @@
+body {
+    background-color: white;
+    color: black;
+    padding: 0;
+    margin: 0;
+}
+
+#title {
+    color: black;
+    background-color: #eee;
+    text-align: center;
+    border-bottom: 1px solid #ccc;
+    padding: 0;
+    margin: 0 1em;
+}
+
+#navLeft {
+    width: 15%;
+    float: left;
+    padding: 2px;
+    margin-left: 1em;
+}
+
+#content {
+    width : 80%;
+    float: left;
+    padding: 2px;
+    margin-left: 10px;
+    border-left: 1px solid #ddd;
+}
+
+#footer {
+    clear: both;
+    margin: 0 2em;
+    color: #999;
+    background-color: #eee;
+    text-align: center;
+    padding: .5em 0;
+    font-size: 75%;
+}
+
+#map {
+    width: 546px;
+    height: 378px;
+    text-align:center;
+    margin: 1em auto;
+    padding: 3px;
+    border: 1px double #bbb;
+}
+
+h1 {}
+
+#title h1 {
+    padding: 2px 0;
+    margin: 0;
+}
+
+h2 {}
+
+#title h2 {
+    padding: 0;
+    margin: 0;
+}
+
+ul.committerList {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+li.committer {
+    margin-left: 1em;
+    border-left: 1px solid blue;
+    padding-left: 2px;
+    font-size: 90%;
+}
+
+  li.committer h2 {
+    margin-left: 2px;
+    border-bottom: 1px solid blue;
+  }
+  li.committer p {
+    padding: 0;
+    margin: 0;
+  }
+
+#navLeft ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+#navLeft ul li {
+    margin: 0;
+}
+
+#navLeft ul li p {
+    margin: 0;
+}
+
+#navLeft ul li a {
+    margin: 0;
+    color: blue;
+    background-color: white;
+}
+
+#navLeft ul li a:hover {
+    margin: 0;
+    color: red;
+    font-style: italic;
+    background-color: white;
+}
+
+#navLeft ul li ul {
+    list-style-type: none;
+    font-size: 90%;
+    margin: 0 2em;
+}
+
+#navLeft ul li ul li {
+    margin: 0;
+}
+
+#navLeft ul li ul li a {
+    margin: 0;
+    color: blue;
+    background-color: white;
+}
+
+#navLeft ul li ul li a:hover {
+    margin: 0;
+    color: red;
+    font-style: italic;
+    background-color: white;
+}
+
+p {}
+
+#footer p {
+    padding: 0;
+}
+
+img {}
+
+#footer img {
+    border: 0;
+}
+
+div {}
+
+.letterSection {
+    clear: left;
+    padding: 1em;
+    border-bottom: 1px solid #ddd;
+}
+
+.bigLetter {
+    float: left;
+    width: 80px;
+    font-weight: bold;
+    font-size: 48pt;
+    text-align: center;
+    background-color: #bbb;
+    color: black;
+    border: 1px solid black;
+    margin: 0;
+    padding: 0;
+}
+  .bigLetter p {
+    padding: 0;
+    margin: 0;
+  }
+
+.letterList {
+    margin-left: 90px;
+    padding: 0;
+}
+  .letterList ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+    .letterList ul li {
+      height: 34px;
+      vertical-align: middle;
+      padding: 0;
+      margin: 0;
+      border-bottom: 1px solid #eee;
+    }
+      .letterList ul li img {
+        vertical-align: middle;
+        padding: 0;
+        margin: 0;
+      }
+      .letterList ul li a {
+        text-decoration: none;
+      }
+
+      .letterList ul li a:hover {
+        color: red;
+        background-color: white;
+        font-style: italic;
+      }
+
+.centred {
+  text-align: center;
+}
+
+a {}
+
+a img {
+  border: 0;
+}
+
+#content form {
+  width: 90%;
+  margin: 0 auto;
+  border: 1px solid black;
+  background-color: #eee;
+  padding: 2px 4px;
+}
+
+#content form table {
+    border: 1px solid #bbb;
+}
+#content form table tr td {
+    border-bottom: 1px solid #bbb;
+}
+#content form table tr.private td {
+    background-color: #bc3435;
+}

@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>net.wessendorf.jsf</groupId>
+  <artifactId>facesgoodies</artifactId>
+  <packaging>war</packaging>
+  <version>1.0</version>
+  <name>Trinidad Kickstart</name>
+  <url>http://www.wessendorf.net</url>
+
+   <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <configuration>
+                        <source>1.5</source>
+                        <target>1.5</target>
+                    </configuration>
+                </plugin>
+            </plugins>
+        </pluginManagement>
+    <finalName>trinidad</finalName>
+        <plugins>
+          <plugin>
+            <groupId>org.mortbay.jetty</groupId>
+            <artifactId>maven-jetty-plugin</artifactId>
+            <version>6.1.7</version>
+            <configuration>
+              <contextPath>/</contextPath>
+		          <connectors>
+		            <connector implementation="org.mortbay.jetty.nio.SelectChannelConnector">
+		              <port>9090</port>
+		              <maxIdleTime>60000</maxIdleTime>
+		            </connector>
+		          </connectors>            
+              <scanIntervalSeconds>10</scanIntervalSeconds>
+            </configuration>
+          </plugin>
+      <plugin>
+        <artifactId>maven-antrun-plugin</artifactId>
+        <executions>
+          <execution>
+            <phase>process-classes</phase>
+            <configuration>
+              <tasks>
+                <java classname="org.apache.openjpa.enhance.PCEnhancer" classpathref="maven.runtime.classpath" dir="target/classes" fork="true" />
+              </tasks>
+            </configuration>
+            <goals>
+              <goal>run</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>          
+        </plugins>
+  </build>
+
+  <repositories>
+    <repository>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <id>java-net</id>
+      <name>java.net repository</name>
+      <!-- NOTE: this URL must be HTTPS.  However, unfortunately this
+           doesn't work behind a firewall.  See:
+         http://jira.codehaus.org/browse/WAGONHTTP-6
+           ... for the source of that problem.  Users behind firewalls
+           will have to manually download the files from this repository
+           and transfer them to their local repository.
+      -->
+      <url>https://maven-repository.dev.java.net/nonav/repository/</url>
+      <layout>legacy</layout>
+    </repository>
+  
+    <repository>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <id>apache-maven-snapshots</id>
+      <url>http://people.apache.org/repo/m2-snapshot-repository</url>
+    </repository>
+  </repositories>
+  
+      <pluginRepositories>
+      <!-- Repository to get the jetty plugin -->
+        <pluginRepository>
+          <id>mortbay-repo</id>
+          <name>mortbay-repo</name>
+          <url>http://www.mortbay.org/maven2/snapshot</url>
+        </pluginRepository>
+      </pluginRepositories>
+
+  <!-- Project dependencies -->
+  <dependencies>
+  
+   <dependency>
+	   <groupId>org.springframework</groupId>
+	   <artifactId>spring</artifactId>
+	   <version>2.0.3</version>
+   </dependency>
+  
+   <dependency>
+	   <groupId>com.sun.facelets</groupId>
+	   <artifactId>jsf-facelets</artifactId>
+	   <version>1.1.14</version>
+   </dependency>
+
+    <dependency>
+      <groupId>org.apache.myfaces.core</groupId>
+      <artifactId>myfaces-api</artifactId>
+      <version>1.2.6</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.myfaces.core</groupId>
+      <artifactId>myfaces-impl</artifactId>
+      <version>1.2.6</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>cglib</groupId>
+      <artifactId>cglib</artifactId>
+      <version>2.1_3</version>
+    </dependency>
+    
+    <!-- Apache Trinidad -->
+    <dependency>
+      <groupId>org.apache.myfaces.trinidad</groupId>
+      <artifactId>trinidad-api</artifactId>
+      <version>1.2.11</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.myfaces.trinidad</groupId>
+      <artifactId>trinidad-impl</artifactId>
+      <version>1.2.11</version>
+      <scope>compile</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.myfaces.orchestra</groupId>
+      <artifactId>myfaces-orchestra-core15</artifactId>
+      <version>1.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.myfaces.orchestra</groupId>
+      <artifactId>myfaces-orchestra-core</artifactId>
+      <version>1.3.1</version>
+    </dependency>
+
+    <dependency>
+      <groupId>commons-el</groupId>
+      <artifactId>commons-el</artifactId>
+      <version>1.0</version>
+    </dependency>
+    <dependency>
+      <groupId>commons-codec</groupId>
+      <artifactId>commons-codec</artifactId>
+      <version>1.3</version>
+    </dependency>
+
+    <dependency>
+      <groupId>javax.servlet</groupId>
+      <artifactId>servlet-api</artifactId>
+      <version>2.5</version>
+      <scope>provided</scope>
+    </dependency>
+
+<!-- 
+		<dependency>
+			<groupId>org.apache.derby</groupId>
+			<artifactId>derby</artifactId>
+			<version>10.3.1.4</version>
+		</dependency>
+    <dependency>
+      <groupId>hsqldb</groupId>
+      <artifactId>hsqldb</artifactId>
+      <version>1.8.0.7</version>
+      <scope>provided</scope>
+    </dependency>
+ -->    
+		
+    <!-- TopLink dependencies 
+    <dependency>
+      <groupId>javax.persistence</groupId>
+      <artifactId>toplink-essentials</artifactId>
+      <version>1.0</version>
+    </dependency>
+    -->
+    <dependency>
+      <groupId>org.apache.openjpa</groupId>
+      <artifactId>openjpa-persistence-jdbc</artifactId>
+      <version>1.0.0</version>
+      <exclusions>
+<!-- 
+        <exclusion>
+          <groupId>hsqldb</groupId>
+          <artifactId>hsqldb</artifactId>
+        </exclusion>
+ -->
+         <exclusion>
+          <groupId>ant</groupId>
+          <artifactId>ant</artifactId>
+        </exclusion>
+      </exclusions>
+    </dependency>
+  </dependencies>
+</project>

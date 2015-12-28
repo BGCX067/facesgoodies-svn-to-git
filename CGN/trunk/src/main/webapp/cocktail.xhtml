@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+  <title>FOO</title>
+</head>
+<body>
+<ui:composition  template="/WEB-INF/templates/master.xhtml" >
+    <ui:param name="title" value="Apache Open Web Beans"/>
+    <ui:define name="content">
+        <h:commandButton value="Buy Cocktails"
+                         actionListener="#{cocktailBean.startShopping}"/>
+        <br/>
+        <h:selectOneMenu id="list" rendered="#{cocktailBean.inShopping}" value="#{cocktailBean.cocktail}" >
+            <f:selectItem itemLabel="Pick One" noSelectionOption="true" />
+            <f:selectItem itemValue="Mai Tai" itemLabel="Mai Tai"/>
+            <f:selectItem itemValue="Zombie" itemLabel="Zombie" />
+            <f:selectItem itemValue="Touch Down" itemLabel="Touch Down" />
+            <f:ajax event="click" execute="list" render="output" />
+        </h:selectOneMenu>
+        <br/>
+        <h:dataTable rendered="#{cocktailBean.inShopping}" id="output" value="#{cocktailBean.cocktails}" var="cocktail">
+          <h:column>
+              <h:outputText value="#{cocktail}" />
+          </h:column>
+        </h:dataTable>
+
+
+         <br/>
+        <h:commandButton value="Pay"
+                         actionListener="#{cocktailBean.endShopping}"/>
+                         
+        <p><h:outputText value="#{cocktailBean.result}" /></p>                 
+        <h:messages/>
+    </ui:define>
+</ui:composition>
+
+    <p>
+    </p>
+</body>
+</html>

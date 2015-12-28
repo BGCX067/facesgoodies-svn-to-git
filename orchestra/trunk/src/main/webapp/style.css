@@ -1,0 +1,81 @@
+body {
+	margin: 0px;
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size: 14px;
+}
+
+#wrapper {
+    position: relative;
+    text-align: justify;
+    width: 600px;
+	margin: auto;
+
+}
+
+#content {
+    margin-top:20px;
+    margin-left: 14px;
+	margin-right: 14px;
+    z-index: 2;
+    position: relative;
+}
+
+#footer {
+	width: 100%;
+	color: #fff;
+	font-size: 0.8em;
+	text-align: center;
+    margin: 10px 0px 15px 0px;
+}
+
+input, select, textarea {
+    font-family: arial,helvetica,clean,sans-serif;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: normal;
+    font-size: 99%;
+    line-height: normal;
+}
+
+a.image:hover {
+    background-color: transparent;
+}
+
+a, a:link, a:visited, a:active {
+    color: #0033ff;
+    text-decoration: none;
+}
+a:hover {
+    color: #ffffff;
+    background-color: #3399ff;
+    text-decoration: none;
+}
+
+#copyright {
+    color: #acb6c9;
+    font-size: 0.9em;    
+}
+
+.warn {
+    color: red;
+    margin-left: 6px;
+}
+
+table {
+    margin-top:5px;
+    margin-bottom:5px;
+    font-size: 18px;
+    border: 1px solid black;
+}
+
+table th {
+    background-color: #3399ff;
+    color: #ffffff;
+}
+
+h1 {
+    font-size:16px;
+    font-weight:bold;
+}
+
+

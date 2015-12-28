@@ -1,0 +1,27 @@
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+  xmlns:mw="http://wessendorf.net/kickstart"
+	template="WEB-INF/facelets/layout/template.xhtml">
+
+<!-- content -->
+<ui:define name="content">
+
+  Some items...
+<mw:accordionContainer duration="250" style="margin-right: 30px; width: 400px; height: 300px; overflow: hidden">  
+  <mw:accordionPane title="html content">  
+    <p>Hello</p>  
+  </mw:accordionPane>  
+  <mw:accordionPane title="some more html content">  
+    <ul>  
+      <li>hey!</li>  
+    </ul>  
+  </mw:accordionPane>  
+  <mw:accordionPane title="JSF component content">  
+    <tr:inputDate />  
+  </mw:accordionPane>  
+</mw:accordionContainer>
+
+</ui:define>
+</ui:composition>

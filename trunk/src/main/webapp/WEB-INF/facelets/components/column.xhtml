@@ -1,0 +1,12 @@
+<tr:column 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+  xmlns:tr="http://myfaces.apache.org/trinidad"
+  sortProperty="#{sort}" sortable="true">
+	
+  <f:facet name="header">
+    <tr:outputText value="#{header}" />
+  </f:facet>
+  <tr:outputText value="#{value}" />
+  
+</tr:column>

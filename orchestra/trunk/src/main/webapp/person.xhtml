@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:s="http://myfaces.apache.org/sandbox"
+                xmlns:m="http://at.irian.molokini/molokini"
+        >
+    <ui:define name="content">
+        <h:form>
+            <h:panelGrid columns="3">
+                <f:facet name="header">
+                    STEP 2/3 (Lazy Loading)
+                </f:facet>
+                <h:outputLabel for="firstname" value="Firstname" />
+                <h:inputText id="firstname" value="#{registrationBean.person.firstname}" required="true"/>
+                <h:message for="firstname" showDetail="true" styleClass="warn"/>
+
+                <h:outputLabel for="lastname" value="Lastname" />
+                <h:inputText id="lastname" value="#{registrationBean.person.lastname}" required="true"/>
+                <h:message for="lastname" showDetail="true" styleClass="warn" />
+                <h:panelGroup />
+                
+                <h:panelGroup>
+                    <t:commandButton value="Add Person" action="#{registrationBean.addPerson}" />
+                </h:panelGroup>
+                <h:panelGroup />
+            </h:panelGrid>
+
+            <t:dataTable var="person" value="#{registrationBean.registration.persons}" rendered="#{registrationBean.registrationComplete}" >
+                <h:column>
+                    <f:facet name="header">
+                        Firstname
+                    </f:facet>
+                    <h:outputText value="#{person.firstname}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Lastname
+                    </f:facet>
+                    <h:outputText value="#{person.lastname}" />
+                </h:column>
+                <h:column>
+                    <h:commandLink value="delete" action="#{registrationBean.removePerson}" immediate="true">
+                        <f:setPropertyActionListener target="#{registrationBean.person}" value="#{person}" />
+                    </h:commandLink>
+                </h:column>
+            </t:dataTable>
+
+            <h:commandButton value="Continue" action="complete" rendered="#{registrationBean.registrationComplete}" immediate="true" />
+        </h:form>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,23 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head id="kopf">
+<h:outputScript id="jsDude" name="jsf.js" library="javax.faces" />
+</h:head>
+<h:body id="body">
+<h:outputStylesheet id="cssDude" name="jug.css" target="head"/>
+<h:form prependId="false">
+
+  <h:inputText value="#{sessionScope['hackSimple']}" id="tipper">
+    <f:ajax event="keyup" render="output1" />
+  </h:inputText>
+       
+  <p><h:outputText id="output1" value="#{sessionScope['hackSimple']}" /></p>
+
+</h:form>
+</h:body>
+</html>

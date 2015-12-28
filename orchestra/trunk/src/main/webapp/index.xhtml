@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition template="template.xhtml"
+                xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:t="http://myfaces.apache.org/tomahawk"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:s="http://myfaces.apache.org/sandbox"
+                xmlns:m="http://at.irian.molokini/molokini"
+        >
+    <ui:define name="content">
+        <h:form>
+
+            <h:commandButton value="New Registration" action="registration" immediate="true" />
+
+            <t:dataTable var="r" value="#{registrationListBean.allRegistrations}" preserveDataModel="true" >
+                <h:column>
+                    <f:facet name="header">
+                        ID
+                    </f:facet>
+                    <h:commandLink value="#{r.id}" action="registration" >
+                        <f:setPropertyActionListener target="#{registrationBean.registrationId}" value="#{r.id}" />
+                    </h:commandLink>
+
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        Name
+                    </f:facet>
+                    <h:outputText value="#{r.name}" />
+                </h:column>
+                <h:column>
+                    <f:facet name="header">
+                        City
+                    </f:facet>
+                    <h:outputText value="#{r.city}" />
+                </h:column>
+            </t:dataTable>
+        </h:form>
+
+    </ui:define>
+</ui:composition>
